@@ -1,0 +1,34 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #F8F9FA;
+}
+
+.box .row {
+    border: 1px;
+}
+
+.box .row.header {
+    flex: 0 1 auto;
+    border-bottom-style: outset;
+    width: "fit-content";
+}
+
+.box .row.content {
+    min-height: 550px;
+    flex: 1 1 auto;
+    width: 100vw;
+    overflow: auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.box .row.footer {
+    border-width: 0.1em;
+    border-top-style: outset;
+    height: auto;
+    margin-top: auto;
+
+}

@@ -1,0 +1,12 @@
+.centered {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 25vh;
+  padding-bottom: 25vh;
+  background-color: #e2e2e9;
+
+}
