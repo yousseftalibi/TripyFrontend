@@ -1,6 +1,7 @@
 import React from 'react';
 
-let Where = () => {
+
+const Where = () => {
         return (
         <>
             <label htmlFor="where">Location</label>
