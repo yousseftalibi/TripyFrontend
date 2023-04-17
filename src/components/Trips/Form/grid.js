@@ -53,10 +53,23 @@ const Grid = () => {
                 'X-RapidAPI-Host': 'opentripmap-places-v1.p.rapidapi.com'
             }
         }
-        const reponse = await fetch('https://opentripmap-places-v1.p.rapidapi.com/en/places/radius?radius=500&lon=2.2945&lat=48.8584', options);
-        const data = await reponse.json();
+        const response = await fetch('https://opentripmap-places-v1.p.rapidapi.com/en/places/radius?radius=500&lon=2.2945&lat=48.8584', options);
+        const data = await response.json();
 
-        console.log(data);
+        const features = data.features.map(feature => feature.properties);
+        let response2 = await fetch('http://localhost:8080/api/cleanData', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(features)
+          });
+                
+          let uniquePlaces = await response2.json();
+        
+        
+
+       /* console.log(data);
         
         const latLonEast = getNextPoint(48.85341, 2.3488, 0);
         const nextReponseEast = await fetch('https://opentripmap-places-v1.p.rapidapi.com/en/places/radius?radius=500&lon='+latLonEast.lon+'&lat='+latLonEast.lat, options);
@@ -69,9 +82,9 @@ const Grid = () => {
         
         const latLonWest = getNextPoint(48.85341, 2.3488, Math.PI );
         const nextReponseWest = await fetch('https://opentripmap-places-v1.p.rapidapi.com/en/places/radius?radius=500&lon='+latLonWest.lon+'&lat='+latLonWest.lat, options);
-        console.log(await nextReponseWest.json());
+        console.log(await nextReponseWest.json());*/
         
-       gridApi.current.setRowData(data.features.map(feature => feature.properties))     
+       gridApi.current.setRowData(uniquePlaces)     
     }, []);
     
 

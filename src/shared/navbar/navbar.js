@@ -17,20 +17,20 @@ let Navbar = (props) => {
           <div className="collapse navbar-collapse" >
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={() => handleButtonClick("My-Trips")} type='button'>My Trips</a>
+                <a className="nav-link" href="#" onClick={() => handleButtonClick("Trips")} type='button'>Trips</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={() => handleButtonClick("Add-Trips")} type='button'>Add Trips</a>
+                <a className="nav-link" href="#" onClick={() => handleButtonClick("Social")} type='button'>Social</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={() => handleButtonClick("Souvenirs")} type='button'>
-                  My Souvenirs
+                <a className="nav-link" href="#" onClick={() => handleButtonClick("Gallery")} type='button'>
+                  Gallery
                 </a>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="#" type='button'>
-                  Personal
+                <a className="nav-link" href="#" onClick={() => handleButtonClick("Account")} type='button'>
+                  Account
                 </a>
               </li>
             </ul>
