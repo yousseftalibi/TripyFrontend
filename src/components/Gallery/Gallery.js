@@ -3,6 +3,7 @@ import React from 'react';
 import './Gallery.css';
 
 const Gallery = () => {
+
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const ws = useRef(null);
@@ -28,7 +29,7 @@ const Gallery = () => {
 
   const sendMessage = () => {
     const newMessage = {
-      id: "3000",
+      id: "user 1",
       message: inputMessage,
     };
       

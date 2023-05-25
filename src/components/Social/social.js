@@ -1,45 +1,76 @@
-import { useState } from 'react';
-import React from 'react';
-import './Social.css';
+import { AgGridReact } from 'ag-grid-react';
+import {React, useState} from 'react';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+import { Async } from 'react-async';
+import { useCallback, useRef } from 'react';
 
-function Social() {
-  let submit = async () => {
+const Social = () => {
 
-    const reponse = await fetch('http://localhost:8080/api/registerEquipement/homeAppliance', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        type: type,
-        frequency: frequency,
-        energy_rating: energyRating,
-      })
-    });
+    const [rowData, setRowData] = useState();
+    let gridApi = useRef(null);
 
-    await reponse.json();
-  }
+    const columnDefs = [
+        { headerName: 'Name', field: 'name', resizable: true, rowDrag: true },
+        { headerName: 'Rate', field: 'rate', resizable: true, sortable: true },
+        { headerName: 'Kinds', field: 'kinds', resizable: true },
+        { headerName: 'Dist', field: 'dist', resizable: true },
+        { headerName: 'Osm', field: 'osm', resizable: true },
+        { headerName: 'Wikidata', field: 'wikidata', resizable: true },
+        { headerName: 'Xid', field: 'xid', resizable: true },
+      ];
 
-  const [type, setType] = useState("");
-  const [frequency, setFrequency] = useState(0);
-  const [energyRating, setEnergyRating] = useState(0);
+    const onGridReady = useCallback((params) => {
+       gridApi.current = params.api;
+       gridApi.current?.sizeColumnsToFit();
+      }, [])
 
-  return (
-    <div className='contents'>
-      <h3>Image title :</h3>
-      <input type="text" onChange={(e) => setType(e.target.value)} />
-      <h3>Image URL :</h3>
-      <input type="number" onChange={(e) => setFrequency(e.target.value)} />
-      <h3>Friend name :</h3>
-      <input type="number" onChange={(e) => setEnergyRating(e.target.value)} />
-      <br />
+  
+    const getApi = useCallback ( async () => {
+        const options = {
+            method: 'GET'
+        }
+        const response = await fetch('http://localhost:8083/api/normalController/paris', options);
+        const data = await response.json();
+        console.table(data);
+       gridApi.current.setRowData(data)     
+    }, []);
+    
 
-      <button onClick={submit} type='submit'>Submit</button>
-      <br />
-
-
-    </div>
-  );
+ 
+    const onRowDragEnd = (event) => {
+        const newRowData = [...rowData];
+        const movingItem = newRowData[event.node.rowIndex];
+      
+        newRowData.splice(event.node.rowIndex, 1);
+        newRowData.splice(event.overIndex, 0, movingItem);
+      
+        newRowData.forEach((row, index) => {
+          row.priority = index + 1;
+        });
+        
+        setRowData(newRowData);
+      };
+      
+    return(
+    <Async promiseFn={getApi}>
+            <p>You can order the rows in order to priortize an activity. The activity at the top represents what you would like to do the most.</p>
+            <br/>
+            <div style={ {display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                <div className='ag-theme-alpine' style={ {width: '1000px', height:'400px'}}>
+                    <AgGridReact
+                        rowData={rowData}
+                        columnDefs={columnDefs}
+                        animateRows={true}
+                        onRowDragEnd={onRowDragEnd}
+                        onGridReady={onGridReady}
+                    > </AgGridReact>
+                </div>
+            </div>
+            <button type="submit"> Get Iternary </button>
+    </Async>
+    )
 }
+
 
 export default Social;

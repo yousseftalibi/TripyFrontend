@@ -1,7 +1,6 @@
 import { useState } from "react";
 import React from "react";
 import Social from "../Social/Social";
-import CleanData from "../Trips/test/test";
 import Authentification from "../Authentification/Authentification";
 import Trips from "../Trips/Trips";
 import Gallery from "../Gallery/Gallery";
