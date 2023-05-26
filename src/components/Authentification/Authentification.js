@@ -23,7 +23,7 @@ function Authentification() {
     let response;
 
     if (!showLogin) {
-      response = await fetch('http://localhost:8080/api/registerUser', {
+      response = await fetch('http://localhost:8083/api/registerUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ function Authentification() {
 
     }
     else {
-      response = await fetch('http://localhost:8080/api/loginUser', {
+      response = await fetch('http://localhost:8083/api/loginUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

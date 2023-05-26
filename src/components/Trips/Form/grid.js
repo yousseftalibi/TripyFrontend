@@ -57,7 +57,7 @@ const Grid = () => {
         const data = await response.json();
 
         const features = data.features.map(feature => feature.properties);
-        let response2 = await fetch('http://localhost:8080/api/cleanData', {
+        let response2 = await fetch('http://localhost:8083/api/cleanData', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'

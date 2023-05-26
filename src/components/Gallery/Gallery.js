@@ -9,7 +9,7 @@ const Gallery = () => {
   const ws = useRef(null);
 
   useEffect(() => {
-    ws.current = new WebSocket("ws://localhost:8080/chat");
+    ws.current = new WebSocket("ws://localhost:8083/chat3");
 
     ws.current.onopen = () => {
       console.log('WebSocket connected');

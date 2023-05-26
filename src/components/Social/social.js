@@ -17,7 +17,9 @@ const Social = () => {
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': 'c4d4c4a3afmsh8073c2210da8497p1bf278jsne8174b51a3ec',
+                //'X-RapidAPI-Key': 'c4d4c4a3afmsh8073c2210da8497p1bf278jsne8174b51a3ec',
+                  //'X-RapidAPI-Key': '01f3cd1780mshb2b87fa150c52f3p195ac3jsn0517fb556b09',
+                  'X-RapidAPI-Key': '6a4f81847bmsh8785c9220ccebdfp1b97bfjsn74f82815c241',
                 'X-RapidAPI-Host': 'opentripmap-places-v1.p.rapidapi.com'
             }
         };
@@ -77,6 +79,7 @@ const Social = () => {
 
     return(
       <Async>
+        <>
         <style>{`
             .ag-header-cell-menu-button {
                 opacity: 1 !important;
@@ -109,6 +112,7 @@ const Social = () => {
               </div>
           </div>
         </div>
+        </>
       </Async>
     )
     
