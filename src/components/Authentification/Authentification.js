@@ -2,7 +2,6 @@ import { useState } from 'react';
 import './Authentification.css';
 import { useLoggedIn } from '../../shared/stateStore/stateStore';
 import Cookies from 'js-cookie';
-import { navbarClicked } from "../../shared/stateStore/stateStore";
 
 function Authentification() {
 
@@ -37,8 +36,13 @@ function Authentification() {
 
       if (response.ok) {
         setValidateSuccess(true);
+          setTimeout(() => {
+            useLoggedIn.setState({loggedIn: true});
+          }
+            , 1400);
+            
       }
-      else if (response.status === 409) {
+      else {
         alert("Username already taken");
       }
 
@@ -56,12 +60,11 @@ function Authentification() {
       }
       );
       if (response.ok) {
+        const user = await response.json();
         setValidateSuccess(true);
-        setTimeout(() => {
-          useLoggedIn.getState().setLoggedIn(true);
-        }, 1400);
+        useLoggedIn.setState({loggedIn: true});
         Cookies.set('loggedIn', 'true', { expires: 1 });
-        navbarClicked.getState().setClickedNavBar('empty');
+        Cookies.set('userId', user.id, { expires: 1 });
       }
       else {
         alert("Wrong username or password");

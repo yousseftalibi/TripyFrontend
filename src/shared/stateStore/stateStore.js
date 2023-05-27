@@ -1,19 +1,20 @@
 import { create } from 'zustand'
-/*export const useLoggedIn = create(set => ({
-    loggedIn: false,
-    setLoggedIn: (value) => set(state => ({ loggedIn: value }))
-}))*/
+import Cookies from 'js-cookie';
 
 export const useLoggedIn = create(set => ({
+    loggedIn: Cookies.get('loggedIn') === 'true' || false, 
+    setLoggedIn: (value) => {
+        set(state => ({ loggedIn: value }));
+        Cookies.set('loggedIn', value, { expires: 1 });
+    }
+}));
+
+/*export const useLoggedIn = create(set => ({
     loggedIn: true,
     setLoggedIn: (value) => set(state => ({ loggedIn: true }))
 }))
+*/
 
-
-export const navbarClicked = create(set => ({
-    clickedNavBar: '',
-    setClickedNavBar: (value) => set(state => ({ clickedNavBar: value }))
-}))
 
 export const nextClicked = create( set => ( {
     nextClicked : '',
