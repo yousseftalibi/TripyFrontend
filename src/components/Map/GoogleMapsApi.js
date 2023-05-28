@@ -11,7 +11,7 @@ const MapComponent = (props) => {
       
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyCIG4YdHCIOiom8tzpS4E_ziVZGcSCeM5Q"
+        googleMapsApiKey: "YourApiKeyHere"
     })
  
     const places = props.places;
@@ -21,7 +21,7 @@ const MapComponent = (props) => {
         <>
       <GoogleMap
             mapContainerStyle={containerStyle}
-            zoom={12}
+            zoom={16}
             center={{ lat: places[places.length - 1].lat, lng: places[places.length - 1].lon }}
             >
         {places && places.map((place, index) => (

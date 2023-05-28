@@ -1,0 +1,11 @@
+.user-trips{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 80%;
+    height: 100%;
+    padding: 0 1rem;
+    overflow: auto;
+}

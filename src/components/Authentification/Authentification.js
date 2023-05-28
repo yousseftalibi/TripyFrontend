@@ -35,9 +35,12 @@ function Authentification() {
       });
 
       if (response.ok) {
+        const user = await response.json();
         setValidateSuccess(true);
           setTimeout(() => {
             useLoggedIn.setState({loggedIn: true});
+            Cookies.set('loggedIn', 'true', { expires: 1 });
+            Cookies.set('userId', user.id, { expires: 1 });
           }
             , 1400);
             

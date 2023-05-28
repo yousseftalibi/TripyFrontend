@@ -13,6 +13,8 @@ const Navbar = () => {
   const logout = () => {
     setLoggedIn(false); 
     Cookies.remove('loggedIn'); 
+    Cookies.remove('userId'); 
+    Cookies.remove('username'); 
     navigate('/authentification'); 
   }
   
@@ -23,19 +25,13 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" >
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={() => navigate("/trips")} type='button'>Trips</a>
+                <a className="nav-link" href="#" onClick={() => navigate("/places")} type='button'>Places</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={() => navigate("/social")} type='button'>Social</a>
+                <a className="nav-link" href="#" onClick={() => navigate("/addPlaces")} type='button'>Add Places</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={() => navigate("/gallery")} type='button'>Gallery</a>
-              </li>
-
-              <li className="nav-item">
-           
-                <a className="nav-link" href="#" onClick={() => navigate("/account")} type='button'>Account</a>
-
+                <a className="nav-link" href="#" onClick={() => navigate("/profile")} type='button'>Profile</a>
               </li>
             </ul>
             <form className="form-inline my-2 my-lg-0">

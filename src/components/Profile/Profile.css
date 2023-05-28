@@ -40,7 +40,7 @@
 .feed-section {
     width: 100%;
     max-width: 600px;
-    transform: translateY(-80%);
+    transform: translateY(90%);
 
 }
 
@@ -51,5 +51,8 @@
     width: 100%;
     max-width: 600px;
 
-
+}
+.recommendations{
+  
+    transform: translateY(-150%);
 }
