@@ -15,6 +15,9 @@ const AddPlace = () => {
   const [getPlaces, setGetPlaces] = useState(false);
   const [destination, setDestination] = useState('');
   const [clicked, setClicked] = useState(false);
+  const [resultPlaces, setResultPlaces] = useState([]);
+  const [minutes, setMinutes] = useState();
+  const [budgetMax, setBudgetMax] = useState();
 
 
   const testRapidApiKey = async (apiKey) => {
@@ -126,8 +129,27 @@ const AddPlace = () => {
     }
   };
 
+
+  const findTripPath = async () => {
+    const response = await fetch(`http://localhost:8083/api/findPath?minutes=${minutes}&&budgetMax=${budgetMax}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(places) 
+    });
+  
+    if (response.ok) {
+      const placesResult = await response.json();
+      setResultPlaces(placesResult);
+      setClicked(true);
+
+    } 
+  };
+  
   const addTrip = async () => {
 
+    findTripPath();
     const userId = Cookies.get('userId');
     for (let place of places) {
       await fetch(`http://localhost:8083/api/visitPlace?userId=${userId}`, {
@@ -144,6 +166,13 @@ const AddPlace = () => {
   const handleDestinationChange = (event) => {
     setDestination(event.target.value);
   };
+  const handleMinutesChange = (event) => {
+    setMinutes(event.target.value);
+  };
+
+  const handleBudgetMaxChange = (event) => {
+    setBudgetMax(event.target.value);
+  };
   return(
     <Async>
 
@@ -155,31 +184,67 @@ const AddPlace = () => {
           }
         `}</style>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <label>Destination</label>
         <input
             type="text"
             value={destination}
             onChange={handleDestinationChange}
             placeholder="Where to?"
           />
-        { getPlaces ?  (
+          <br/>
+          <label>Duration in minutes</label>
+         <input
+            type="text"
+            value={minutes}
+            onChange={handleMinutesChange}
+            placeholder="For how many minutes?"
+          />
+
+          <label>Maximum in budget</label>
+         <input
+            type="text"
+            value={budgetMax}
+            onChange={handleBudgetMaxChange}
+            placeholder="What's your budget?"
+          />
+
+        { getPlaces ?   (
           <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', width: '100%' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              { places.length > 0 && <MapComponent places={places} />}
-              <button type='button' style={{visibility: !streaming && places.length > 0 && !clicked? 'visible' : 'hidden'}} onClick={addTrip}>Add places</button>
+              { places.length > 0 && !clicked && <MapComponent places={places} />}
+              <button type='button' style={{visibility: !streaming && places.length > 0 && !clicked? 'visible' : 'hidden'}} onClick={addTrip}>Find Trip Path and Add Trip</button>
             </div>
-            <div className='ag-theme-alpine pl-5' style={{ width: '1020px', height:'400px' }}>
-              <AgGridReact
-                rowData={places}
-                columnDefs={columnDefs}
-                onGridReady={onGridReady}
-                onRowSelected={onCheckboxChanged}
-                rowSelection="multiple"
-              />
-              <h6 style={{ transform: 'translateY(-450px)' }}>Filter Category column to specify the type, historic period or activity</h6>
-            {streaming  && (
-                <button type='button' onClick={toggleStreaming}>Stop Searching</button>
-              )}
-            </div>
+            { !clicked && (
+            
+                  <div className='ag-theme-alpine pl-5' style={{ width: '1020px', height:'400px' }}>
+                    <AgGridReact
+                      rowData={places}
+                      columnDefs={columnDefs}
+                      onGridReady={onGridReady}
+                      onRowSelected={onCheckboxChanged}
+                      rowSelection="multiple"
+                    />
+                    <h6 style={{ transform: 'translateY(-450px)' }}>Filter Category column to specify the type, historic period or activity</h6>
+                  {streaming  && (
+                      <button type='button' onClick={toggleStreaming}>Stop Searching</button>
+                    )}
+                  </div>
+                  )}
+          { clicked && (
+            
+            <div>
+              <>
+              { resultPlaces.length == 0 ? (<p>No path was found. Change parameters </p> )  : (
+                <div>
+                  <br/> <br/>
+              <p>Trip Path to visit: </p> <br/>
+              {resultPlaces.map((place, index) => (
+              <p key={index}>{place.name}</p>
+               ))} </div>)}
+            </>
+          </div>)
+          
+          }
           </div>) : (<button type='button' onClick={handleGetPlaces} disabled={!destination}>Get Places </button>)}
         </div>
         </>

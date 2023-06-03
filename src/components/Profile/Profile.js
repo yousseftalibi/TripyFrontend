@@ -8,6 +8,8 @@ import Cookies from 'js-cookie';
 import ProfileForm from './ProfileForm';
 import FriendsList from './FriendsList';
 import Recommendations from './Recommendations';
+import UploadImage from './images';
+
 const Profile = () => {
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -122,6 +124,9 @@ const Profile = () => {
         <Recommendations/>
         <br/> <br/>
         <Feed messages={messages} />
+
+        <br/> <br/>
+        <UploadImage/>
       </div>
     </>
   );
