@@ -8,11 +8,6 @@ function Authentification() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(0);
-  const [nationality, setNationality] = useState("");
-  const [city, setCity] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [validateSuccess, setValidateSuccess] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
 

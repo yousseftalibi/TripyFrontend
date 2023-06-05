@@ -10,6 +10,7 @@ import Places from './components/Places/Places';
 import AddPlace from './components/AddPlace/AddPlace';
 import Profile from './components/Profile/Profile';
 import Authentification from './components/Authentification/Authentification';
+import AccountSettings from './components/Profile/AccountSettings';
 import {useLoggedIn} from './shared/stateStore/stateStore';
 const root = ReactDOM.createRoot(document.getElementById('app'));
 
@@ -39,6 +40,7 @@ const ProtectedRoute = ({ children }) =>  {
                     <Route path="/addPlaces" element={<ProtectedRoute><AddPlace /></ProtectedRoute>} />
                     <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                     <Route path="/authentification" element={<Places />} />
+                    <Route path="/account" element={<AccountSettings />} />
                     <Route path="/" element={<Places />} />
                     </Routes> 
                 </div>

@@ -1,0 +1,289 @@
+ 
+
+/* CSS pour la page de profil inspirée d'Instagram */
+
+.profile-container {
+
+    max-width: 800px;
+
+    margin: 0 auto;
+
+    padding: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+  }
+
+ 
+
+  .profile-header {
+
+    margin-bottom: 20px;
+
+  }
+
+ 
+
+  .profile-picture {
+
+    position: relative;
+
+    width: 120px;
+
+    height: 120px;
+
+    margin: 0 auto;
+
+    margin-bottom: 10px;
+
+  }
+
+ 
+
+  .profile-picture img {
+
+    width: 100%;
+
+    height: 100%;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+  }
+
+ 
+
+  .edit-profile-picture {
+
+    position: absolute;
+
+    bottom: 0;
+
+    right: 0;
+
+    background-color: rgba(0, 0, 0, 0.6);
+
+    padding: 6px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    transition: background-color 0.3s ease;
+
+  }
+
+ 
+
+  .edit-profile-picture:hover {
+
+    background-color: rgba(0, 0, 0, 0.8);
+
+  }
+
+ 
+
+  .edit-profile-picture input[type="file"] {
+
+    display: none;
+
+  }
+
+ 
+
+  .profile-info {
+
+    margin: 0 auto;
+
+    width: 100%;
+
+    max-width: 300px;
+
+  }
+
+ 
+
+  .profile-info h1 {
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+
+  }
+
+ 
+
+  .profile-description {
+
+    margin-top: 10px;
+
+  }
+
+ 
+
+  .profile-description p {
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    margin-bottom: 10px;
+
+  }
+
+ 
+
+  .profile-edit-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+ 
+
+  .profile-edit-form label {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    width: 100%;
+
+  }
+
+ 
+
+  .profile-edit-form input,
+
+  .profile-edit-form textarea {
+
+    width: 100%;
+
+    padding: 8px;
+
+    border: 1px solid #dbdbdb;
+
+    border-radius: 4px;
+
+    font-size: 14px;
+
+    transition: border-color 0.3s ease;
+
+    margin-bottom: 10px;
+
+  }
+
+ 
+
+  .profile-edit-form input:focus,
+
+  .profile-edit-form textarea:focus {
+
+    outline: none;
+
+    border-color: #3897f0;
+
+  }
+
+ 
+
+  .profile-edit-form button[type="submit"],
+
+  .profile-edit-form button[type="button"] {
+
+    padding: 8px 16px;
+
+    background-color: #3897f0;
+
+    color: #fff;
+
+    border: none;
+
+    border-radius: 4px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: background-color 0.3s ease;
+
+    margin-right: 10px;
+
+  }
+
+ 
+
+  .profile-edit-form button[type="submit"]:hover,
+
+  .profile-edit-form button[type="button"]:hover {
+
+    background-color: #147bcd;
+
+  }
+
+ 
+
+  .published-photos {
+
+    margin-top: 20px;
+
+    text-align: center;
+
+  }
+
+ 
+
+  .published-photos h2 {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+
+  }
+
+ 
+
+  .photos-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+    gap: 10px;
+
+    justify-items: center;
+
+  }
+
+ 
+
+  .photo-item img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: 0%
+
+  }
