@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import UserTrips from './UserTrips';
-
+import Chat from '../Chat/Chat';
 const ProfilePage = () => {
   const { id } = useParams();
   const [profile, setProfile] = useState(null);
@@ -80,6 +80,8 @@ const ProfilePage = () => {
             <>
             {console.log("userid", profile.user.id)}
               <UserTrips userId={profile.user.id} />
+              <br/> <br/>       <h2>Your messages </h2><Chat />
+
             </>
           )}
         </>
