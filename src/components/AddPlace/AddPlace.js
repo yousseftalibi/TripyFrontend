@@ -130,26 +130,10 @@ const AddPlace = () => {
   };
 
 
-  const findTripPath = async () => {
-    const response = await fetch(`http://localhost:8083/api/findPath?minutes=${minutes}&&budgetMax=${budgetMax}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(places) 
-    });
-  
-    if (response.ok) {
-      const placesResult = await response.json();
-      setResultPlaces(placesResult);
-      setClicked(true);
 
-    } 
-  };
   
   const addTrip = async () => {
 
-    findTripPath();
     const userId = Cookies.get('userId');
     for (let place of places) {
       await fetch(`http://localhost:8083/api/visitPlace?userId=${userId}`, {
@@ -166,13 +150,7 @@ const AddPlace = () => {
   const handleDestinationChange = (event) => {
     setDestination(event.target.value);
   };
-  const handleMinutesChange = (event) => {
-    setMinutes(event.target.value);
-  };
-
-  const handleBudgetMaxChange = (event) => {
-    setBudgetMax(event.target.value);
-  };
+ 
   return(
     
     <Async>
@@ -193,27 +171,13 @@ const AddPlace = () => {
             placeholder="Where to?"
           />
           <br/>
-          <label>Duration in minutes</label>
-         <input
-            type="text"
-            value={minutes}
-            onChange={handleMinutesChange}
-            placeholder="For how many minutes?"
-          />
-
-          <label>Maximum in budget</label>
-         <input
-            type="text"
-            value={budgetMax}
-            onChange={handleBudgetMaxChange}
-            placeholder="What's your budget?"
-          />
+        
 
         { getPlaces ?   (
           <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', width: '100%' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               { places.length > 0 && !clicked && <MapComponent places={places} />}
-              <button type='button' style={{visibility: !streaming && places.length > 0 && !clicked? 'visible' : 'hidden'}} onClick={addTrip}>Find Trip Path and Add Trip</button>
+              <button type='button' style={{visibility: !streaming && places.length > 0 && !clicked? 'visible' : 'hidden'}} onClick={addTrip}>Add Trip</button>
             </div>
             { !clicked && (
             
@@ -235,7 +199,7 @@ const AddPlace = () => {
             
             <div>
               <>
-              { resultPlaces.length == 0 ? (<p>No path was found. Change parameters </p> )  : (
+              { resultPlaces.length == 0 ? (<p>Places were added. </p> )  : (
                 <div>
                   <br/> <br/>
               <p>Trip Path to visit: </p> <br/>

@@ -11,7 +11,7 @@ const MapComponent = (props) => {
       
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyBXVa6YnO1fVtSdM7xquutavcKms5edgSY"
+        googleMapsApiKey: "AIzaSyD_mTJq6vddk8brD_c7PCShWDj0NWDrrcg"
     })
  
     const places = props.places;
