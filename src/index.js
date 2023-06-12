@@ -12,6 +12,7 @@ import Profile from './components/Profile/Profile';
 import Authentification from './components/Authentification/Authentification';
 import AccountSettings from './components/Profile/AccountSettings';
 import Chat from './components/Chat/Chat';
+import Social from './components/Social/Social';
 import Gallery from './components/Gallery/Gallery';
 import {useLoggedIn} from './shared/stateStore/stateStore';
 const root = ReactDOM.createRoot(document.getElementById('app'));
@@ -40,6 +41,7 @@ const ProtectedRoute = ({ children }) =>  {
                     <Route path="/profile/:id" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
                     <Route path="/places" element={<ProtectedRoute><Places /></ProtectedRoute>} />
                     <Route path="/addPlaces" element={<ProtectedRoute><AddPlace /></ProtectedRoute>} />
+                    <Route path="/social" element={<ProtectedRoute><Social /></ProtectedRoute>} />
                     <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                     <Route path="/authentification" element={<Places />} />
                     <Route path="/account" element={<AccountSettings />} />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { Table } from "react-bootstrap";
-
+import "./Recommendation.css";
 const Recommendations = () => {
     const userId = Cookies.get("userId") ;
   const [trips, setTrips] = useState([]);
@@ -17,10 +17,14 @@ const Recommendations = () => {
   }, []);
 
   return (
+    <>
+  
     <div className="recommendations">
+    <header >     
+      <h3>Recommended visits based on your friends</h3>
       <br/>
-      <h3>Recommended places based on your friends</h3>
-      <br/>
+    </header>
+    <br/>
       {trips.length > 0 ? (
         <Table striped bordered hover>
           <thead>
@@ -46,6 +50,7 @@ const Recommendations = () => {
         <p>You have not visited any places yet.</p>
       )}
     </div>
+    </>
   );
 }
 

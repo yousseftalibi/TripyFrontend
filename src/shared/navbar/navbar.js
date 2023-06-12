@@ -31,6 +31,9 @@ const Navbar = () => {
                 <a className="nav-link" href="#" onClick={() => navigate("/addPlaces")} type='button'>Add Places</a>
               </li>
               <li className="nav-item">
+                <a className="nav-link" href="#" onClick={() => navigate("/social")} type='button'>Social</a>
+              </li>
+              <li className="nav-item">
                 <a className="nav-link" href="#" onClick={() => navigate("/profile")} type='button'>Profile</a>
               </li>
               <li className="nav-item">

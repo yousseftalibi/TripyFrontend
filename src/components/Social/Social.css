@@ -1,0 +1,25 @@
+.posts-section{
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    width: 10%;
+    background-color: #fff;
+
+}
+
+.friends-list{
+    margin: 0;
+    position: absolute;
+    top: 15%;
+    right: 70%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.search-section{
+    margin: 0;
+    position: absolute;
+    top: 15%;
+    right: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}

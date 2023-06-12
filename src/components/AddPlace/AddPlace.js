@@ -174,8 +174,9 @@ const AddPlace = () => {
     setBudgetMax(event.target.value);
   };
   return(
+    
     <Async>
-
+    
       <>
 
         <style>{`

@@ -182,7 +182,6 @@ const AccountSettings = () => {
 
                 Nom d'utilisateur
 
-                <input type="text" value={profile.fName} onChange={handleUsernameChange} />
 
               </label>
 
